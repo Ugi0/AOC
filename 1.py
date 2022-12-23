@@ -1,10 +1,4 @@
-lines = []
-while True:
-    a = input()
-    if lines[-2:] == ["",""]:
-        break
-    else:
-        lines.append(a)
+lines = open("input.txt","r").read().split("\n")
 most = [0,0,0]
 num = 0
 for x in lines:
@@ -21,5 +15,5 @@ for x in lines:
         num = 0
     else:
         num += int(x)
-print(most[0])
-print(sum(most))
+print(f"Part 1: {most[0]}")
+print(f"Part 2: {sum(most)}")

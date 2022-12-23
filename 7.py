@@ -11,7 +11,7 @@ for x in lines[1:]:
                 path.append(args[2])
     else:
         dir[tuple(path+[args[1]])] = [args[0]]
-#num = 0
+num = 0
 upfordelettion = {}
 def compare(path1, path2):
     for i,x in enumerate(path1):
@@ -30,14 +30,17 @@ def look(path):
             size += int(dir[file][0])
     global upfordelettion
     upfordelettion[size] = path
-    #if size > 100000:
-        #global num
-        #num += size
+    if size < 100000:
+        global num
+        num += size
     return size
-spaceneeded = 30000000 - (70000000 - look(('/',)))
-print(spaceneeded)
-for x in sorted(upfordelettion.keys()):
-    if x >= spaceneeded:
-        print(x, upfordelettion[x])
-        break
-#print(num)
+def solve():
+    spaceneeded = 30000000 - (70000000 - look(('/',)))
+    for x in sorted(upfordelettion.keys()):
+        if x >= spaceneeded:
+            return x
+
+ans = solve()
+
+print(f"Part 1: {num}")
+print(f"Part 2: {ans}")

@@ -57,7 +57,8 @@ for i in range(1,1000000):
     if currentHash not in hashes.keys():
         hashes[currentHash] = (sol[0], i)
     else:
-        print(f"{i} and {hashes[currentHash][1]} have the same hash value with values {sol[0]} and {hashes[currentHash][0]}")
+        #print(f"{i} and {hashes[currentHash][1]} have the same hash value with values {sol[0]} and {hashes[currentHash][0]}")
         solution = ((1000000000000 // (i - hashes[currentHash][1])) * (sol[0] - hashes[currentHash][0])) + solve((1000000000000 % (i - hashes[currentHash][1])))[0]
-        print(f"Therefore, the answer for a trillion rocks would be {solution}")
+        print(f"Part 2: {solution}")
         break
+#Both parts take around ~30s

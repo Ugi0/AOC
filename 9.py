@@ -19,6 +19,7 @@ def func(ropes):
                     tails[i][0] -= np.sign(dx)
                     tails[i][1] -= np.sign(dy)
             visited.add((tails[-1][0], tails[-1][1]))
-    print(len(visited))
-func(2)
-func(10)
+    return len(visited)
+    
+print(f"Part 1: {func(2)}")
+print(f"Part 2: {func(10)}")

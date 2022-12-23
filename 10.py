@@ -2,6 +2,7 @@ lines = open("input.txt","r").read().split("\n")
 counter = 1
 num = 0
 i = 0
+print("Part 2:")
 def draw(index):
     ind = index%40
     if abs(counter-ind) <= 1:
@@ -28,4 +29,4 @@ for x in lines:
     elif (i % 40) == 20:
         num += i*counter
 print()
-print(num)
+print(f"Part 1: {num}")

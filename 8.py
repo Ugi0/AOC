@@ -1,11 +1,5 @@
-lines = []
-while True:
-    a = input()
-    if a == "":
-        break
-    else:
-        lines.append(list(a))
-def visible(n ,m ):
+lines = [list(a) for a in open("input.txt","r").read().split("\n")]
+def visible(n ,m, part2):
     size = len(lines)
     if n == 0 or n == size-1:
         return True
@@ -13,15 +7,16 @@ def visible(n ,m ):
         return True
     value = int(lines[n][m])
     nums = [1,1,1,1]
-    # if all([int(lines[n][i]) < value for i in range(0,m)]): #same row before
-    #     return True
-    # if all([int(lines[n][i]) < value for i in range(m+1,size)]): #same row before
-    #     return True
-    # if all([int(lines[i][m]) < value for i in range(0,n)]): #same row before
-    #     return True
-    # if all([int(lines[i][m]) < value for i in range(n+1,size)]): #same row before
-    #     return True
-    #return False
+    if not part2:
+        if all([int(lines[n][i]) < value for i in range(0,m)]): #same row before
+            return True
+        if all([int(lines[n][i]) < value for i in range(m+1,size)]): #same row before
+            return True
+        if all([int(lines[i][m]) < value for i in range(0,n)]): #same row before
+            return True
+        if all([int(lines[i][m]) < value for i in range(n+1,size)]): #same row before
+            return True
+        return False
     for i in range(m-1,0, -1):
         if int(lines[n][i]) < value:
             nums[0] += 1
@@ -44,13 +39,19 @@ def visible(n ,m ):
             break;
     return nums[0]*nums[1]*nums[2]*nums[3]
 
-num = 0
-for i in range(len(lines)):
-     for j in range(len(lines)):
-         #if visible(i,j):
-         n = visible(i,j)
-         if num < n:
-             #num += 1
-             num = n
+def solve(part2 = False):
+    num = 0
+    for i in range(len(lines)):
+        for j in range(len(lines)):
+            if part2:
+                n = visible(i,j, part2)
+                if num < n:
+                    num = n
+            else:
+                if visible(i,j, part2):
+                    num += 1
+    return num
 
-print(num)
+
+print(f"Part 1: {solve()}")
+print(f"Part 2: {solve(True)}")
