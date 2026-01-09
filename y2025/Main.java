@@ -13,7 +13,7 @@ public class Main {
         File input = new File("y2025/input");
         List<String> inputLines = new ArrayList<>();
 
-        Runnable solution = new d8();
+        Runnable solution = new d12();
 
         try (Scanner myReader = new Scanner(input)) {
             while (myReader.hasNextLine()) {
